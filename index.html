@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#021b11"
+    >
+
+    <title>Tutorial</title>
+
+
+    <style>
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                "Microsoft YaHei",
+                sans-serif;
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    rgba(0, 20, 12, 0.88),
+                    rgba(0, 12, 8, 0.95)
+                ),
+                url("images/tutorial-bg.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+            height: 64px;
+
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+
+            padding: 0 20px;
+
+            background:
+                rgba(2, 27, 17, 0.96);
+
+            border-bottom:
+                1px solid rgba(214, 173, 63, 0.35);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* =========================================================
+           BACK BUTTON
+        ========================================================= */
+
+        .back-btn {
+            justify-self: start;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+
+            padding: 8px 4px;
+
+            border: 0;
+
+            background: transparent;
+
+            color: #e6c15b;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition:
+                color 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .back-btn:hover {
+            color: #ffe28a;
+        }
+
+        .back-btn:active {
+            opacity: 0.7;
+        }
+
+        .back-arrow {
+            position: relative;
+            top: -1px;
+
+            font-size: 27px;
+            line-height: 1;
+        }
+
+
+        /* =========================================================
+           PAGE TITLE
+        ========================================================= */
+
+        .page-title {
+            justify-self: center;
+
+            color: #f3d777;
+
+            font-size: 18px;
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            white-space: nowrap;
+
+            text-shadow:
+                0 0 10px rgba(224, 182, 67, 0.25);
+        }
+
+
+        /* =========================================================
+           LANGUAGE
+        ========================================================= */
+
+        .language-select {
+            justify-self: end;
+
+            min-width: 72px;
+
+            padding:
+                7px
+                25px
+                7px
+                10px;
+
+            appearance: none;
+            -webkit-appearance: none;
+
+            outline: none;
+
+            border:
+                1px solid rgba(214, 173, 63, 0.55);
+
+            border-radius: 7px;
+
+            color: #f0d173;
+
+            background-color:
+                rgba(8, 45, 29, 0.95);
+
+            background-image:
+                linear-gradient(
+                    45deg,
+                    transparent 50%,
+                    #d9b64c 50%
+                ),
+                linear-gradient(
+                    135deg,
+                    #d9b64c 50%,
+                    transparent 50%
+                );
+
+            background-position:
+                calc(100% - 13px) 50%,
+                calc(100% - 9px) 50%;
+
+            background-size:
+                4px 4px,
+                4px 4px;
+
+            background-repeat: no-repeat;
+
+            font-size: 13px;
+
+            cursor: pointer;
+        }
+
+        .language-select:hover,
+        .language-select:focus {
+            border-color: #f5d76e;
+        }
+
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        .tutorial-wrapper {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding:
+                18px
+                14px
+                60px;
+        }
+
+
+        /* =========================================================
+           INTRO
+        ========================================================= */
+
+        .intro {
+            padding:
+                18px
+                15px
+                22px;
+
+            text-align: center;
+        }
+
+        .intro-title {
+            margin-bottom: 8px;
+
+            color: #f1d16c;
+
+            font-size: 21px;
+            font-weight: 600;
+        }
+
+        .intro-text {
+            margin: 0;
+
+            color:
+                rgba(255, 255, 255, 0.7);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           TUTORIAL LIST
+        ========================================================= */
+
+        .tutorial-list {
+            width: 100%;
+
+            overflow: hidden;
+
+            border:
+                1px solid rgba(199, 159, 55, 0.28);
+
+            border-radius: 12px;
+
+            background:
+                rgba(0, 24, 15, 0.78);
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* =========================================================
+           TUTORIAL ITEM
+        ========================================================= */
+
+        .tutorial-item {
+            border-bottom:
+                1px solid rgba(209, 172, 69, 0.18);
+        }
+
+        .tutorial-item:last-child {
+            border-bottom: 0;
+        }
+
+
+        /* =========================================================
+           TITLE BUTTON
+        ========================================================= */
+
+        .tutorial-title {
+            width: 100%;
+            min-height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                0
+                22px;
+
+            border: 0;
+
+            color: #ead070;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(5, 38, 24, 0.96),
+                    rgba(2, 27, 18, 0.94)
+                );
+
+            font-size: 16px;
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease;
+        }
+
+        .tutorial-title:hover {
+            color: #ffe28b;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(11, 60, 38, 0.97),
+                    rgba(4, 39, 25, 0.96)
+                );
+        }
+
+        .tutorial-item.active
+        .tutorial-title {
+            color: #ffe690;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(17, 72, 44, 0.98),
+                    rgba(5, 42, 27, 0.97)
+                );
+        }
+
+
+        /* =========================================================
+           PLUS
+        ========================================================= */
+
+        .plus {
+            flex: 0 0 auto;
+
+            color: #d1ab46;
+
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1;
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+
+        .tutorial-item.active
+        .plus {
+            color: #ffe17a;
+
+            transform: rotate(45deg);
+        }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .tutorial-content {
+            max-height: 0;
+
+            overflow: hidden;
+
+            opacity: 0;
+
+            background:
+                rgba(0, 13, 8, 0.9);
+
+            transition:
+                max-height 0.45s ease,
+                opacity 0.3s ease;
+        }
+
+        .tutorial-item.active
+        .tutorial-content {
+            opacity: 1;
+        }
+
+        .tutorial-inner {
+            padding:
+                20px
+                18px
+                5px;
+        }
+
+
+        /* =========================================================
+           IMAGE
+        ========================================================= */
+
+        .tutorial-content img {
+            display: block;
+
+            width: 100%;
+            max-width: 850px;
+            height: auto;
+
+            margin:
+                0 auto
+                18px;
+
+            border:
+                1px solid rgba(211, 174, 73, 0.25);
+
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 7px 22px rgba(0, 0, 0, 0.45);
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                background-attachment: scroll;
+            }
+
+            .topbar {
+                height: 58px;
+
+                padding:
+                    0
+                    11px;
+            }
+
+            .back-btn {
+                gap: 3px;
+
+                font-size: 13px;
+            }
+
+            .back-arrow {
+                font-size: 23px;
+            }
+
+            .page-title {
+                font-size: 15px;
+
+                letter-spacing: 1.3px;
+            }
+
+            .language-select {
+                min-width: 63px;
+
+                padding:
+                    6px
+                    19px
+                    6px
+                    7px;
+
+                font-size: 12px;
+            }
+
+            .tutorial-wrapper {
+                padding:
+                    12px
+                    8px
+                    35px;
+            }
+
+            .intro {
+                padding:
+                    14px
+                    10px
+                    17px;
+            }
+
+            .intro-title {
+                font-size: 18px;
+            }
+
+            .intro-text {
+                font-size: 12px;
+            }
+
+            .tutorial-list {
+                border-radius: 9px;
+            }
+
+            .tutorial-title {
+                min-height: 60px;
+
+                padding:
+                    0
+                    16px;
+
+                font-size: 14px;
+            }
+
+            .plus {
+                font-size: 24px;
+            }
+
+            .tutorial-inner {
+                padding:
+                    12px
+                    8px
+                    1px;
+            }
+
+            .tutorial-content img {
+                margin-bottom: 12px;
+
+                border-radius: 6px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="topbar">
+
+        <!-- BACK -->
+
+        <button
+            class="back-btn"
+            id="backBtn"
+            type="button"
+            aria-label="Back"
+        >
+            <span class="back-arrow">
+                ‹
+            </span>
+
+            <span id="backText">
+                Kembali
+            </span>
+        </button>
+
+
+        <!-- TITLE -->
+
+        <div class="page-title">
+            TUTORIAL
+        </div>
+
+
+        <!-- LANGUAGE -->
+
+        <select
+            class="language-select"
+            id="languageSelect"
+            aria-label="Language"
+        >
+            <option
+                value="ms"
+                selected
+            >
+                BM
+            </option>
+
+            <option value="zh">
+                中文
+            </option>
+
+            <option value="en">
+                EN
+            </option>
+        </select>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main class="tutorial-wrapper">
+
+
+        <!-- =====================================================
+             INTRO
+        ====================================================== -->
+
+        <section class="intro">
+
+            <div
+                class="intro-title"
+
+                data-ms="Pusat Tutorial"
+                data-zh="教学中心"
+                data-en="Tutorial Centre"
+            >
+                Pusat Tutorial
+            </div>
+
+
+            <p
+                class="intro-text"
+
+                data-ms="Sila pilih tutorial yang ingin anda lihat"
+                data-zh="请选择您需要查看的教学"
+                data-en="Please select a tutorial to view the guide"
+            >
+                Sila pilih tutorial yang ingin anda lihat
+            </p>
+
+        </section>
+
+
+        <!-- =====================================================
+             TUTORIAL LIST
+        ====================================================== -->
+
+        <section class="tutorial-list">
+
+
+            <!-- =================================================
+                 01 - DEPOSIT
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Deposit"
+                        data-zh="如何存款"
+                        data-en="How To Deposit"
+                    >
+                        Cara Deposit
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/card-dp.png"
+                            alt="Cara Deposit"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 02 - WITHDRAW
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Pengeluaran"
+                        data-zh="如何提款"
+                        data-en="How To Withdraw"
+                    >
+                        Cara Pengeluaran
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/cara-wd.png"
+                            alt="Cara Pengeluaran"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 03 - PLAY GAMES
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Bermain Game"
+                        data-zh="如何玩游戏"
+                        data-en="How To Play Games"
+                    >
+                        Cara Bermain Game
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/cara-main.png"
+                            alt="Cara Bermain Game"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 04 - TRANSFER CREDIT
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Transfer Kredit ke Game"
+                        data-zh="如何转积分到游戏"
+                        data-en="How To Transfer Credits To Game"
+                    >
+                        Cara Transfer Kredit ke Game
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/cara-transfer.png"
+                            alt="Cara Transfer Kredit ke Game"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 05 - TURNOVER
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Semak Turnover"
+                        data-zh="如何查询流水"
+                        data-en="How To Check Turnover"
+                    >
+                        Cara Semak Turnover
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/cara-turnover.png"
+                            alt="Cara Semak Turnover"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 06 - DOWNLOAD GAME
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Muat Turun Aplikasi Game"
+                        data-zh="如何下载游戏应用"
+                        data-en="How To Download Game App"
+                    >
+                        Cara Muat Turun Aplikasi Game
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/cara-download.png"
+                            alt="Cara Muat Turun Aplikasi Game"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 07 - REFERRAL FRIEND
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Jemput Rakan"
+                        data-zh="如何邀请好友"
+                        data-en="How To Refer A Friend"
+                    >
+                        Cara Jemput Rakan
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/cara-share.png"
+                            alt="Cara Jemput Rakan"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =================================================
+                 08 - Install APP
+            ================================================== -->
+
+            <div class="tutorial-item">
+
+                <button
+                    class="tutorial-title"
+                    type="button"
+                >
+                    <span
+                        data-ms="Cara Pasang Web App"
+                        data-zh="如何安装网页APP"
+                        data-en="How To Install Web App"
+                    >
+                        Cara Pasang Web App
+                    </span>
+
+                    <span class="plus">
+                        +
+                    </span>
+                </button>
+
+
+                <div class="tutorial-content">
+
+                    <div class="tutorial-inner">
+
+                        <img
+                            src="./images/cara-pasang.png"
+                            alt="Cara Jemput Rakan"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* =========================================================
+           ELEMENTS
+        ========================================================= */
+
+        const tutorialItems =
+            document.querySelectorAll(".tutorial-item");
+
+        const backButton =
+            document.getElementById("backBtn");
+
+        const backText =
+            document.getElementById("backText");
+
+        const languageSelect =
+            document.getElementById("languageSelect");
+
+
+        /* =========================================================
+           ACCORDION
+        ========================================================= */
+
+        tutorialItems.forEach((item) => {
+
+            const button =
+                item.querySelector(".tutorial-title");
+
+            const content =
+                item.querySelector(".tutorial-content");
+
+
+            button.addEventListener("click", () => {
+
+                const isOpen =
+                    item.classList.contains("active");
+
+
+                /* ---------------------------------------------
+                   CLOSE ALL
+                --------------------------------------------- */
+
+                tutorialItems.forEach((otherItem) => {
+
+                    const otherContent =
+                        otherItem.querySelector(
+                            ".tutorial-content"
+                        );
+
+                    otherItem.classList.remove("active");
+
+                    otherContent.style.maxHeight = null;
+
+                });
+
+
+                /* ---------------------------------------------
+                   OPEN CURRENT
+                --------------------------------------------- */
+
+                if (!isOpen) {
+
+                    item.classList.add("active");
+
+                    content.style.maxHeight =
+                        content.scrollHeight + "px";
+
+                }
+
+            });
+
+        });
+
+
+        /* =========================================================
+           UPDATE OPEN HEIGHT AFTER IMAGE LOAD
+        ========================================================= */
+
+        document
+            .querySelectorAll(".tutorial-content img")
+            .forEach((image) => {
+
+                image.addEventListener("load", () => {
+
+                    const item =
+                        image.closest(".tutorial-item");
+
+                    const content =
+                        image.closest(
+                            ".tutorial-content"
+                        );
+
+                    if (
+                        item.classList.contains("active")
+                    ) {
+
+                        content.style.maxHeight =
+                            content.scrollHeight + "px";
+
+                    }
+
+                });
+
+            });
+
+
+        /* =========================================================
+           BACK BUTTON
+           BACK TO PREVIOUS PAGE
+        ========================================================= */
+
+        backButton.addEventListener("click", () => {
+
+            /*
+                如果 Tutorial 是从网站其他页面进入，
+                直接返回上一页。
+            */
+
+            if (
+                window.history.length > 1 &&
+                document.referrer
+            ) {
+
+                window.history.back();
+
+                return;
+
+            }
+
+
+            /*
+                如果顾客直接打开 Tutorial URL，
+                没有上一页，则回网站首页。
+                
+                如果你的首页不是 "/"，
+                可以在这里更换。
+            */
+
+            window.location.href = "/";
+
+        });
+
+
+        /* =========================================================
+           TRANSLATIONS
+        ========================================================= */
+
+        const backTranslations = {
+
+            ms: "Kembali",
+
+            zh: "返回",
+
+            en: "Back"
+
+        };
+
+
+        const htmlLanguages = {
+
+            ms: "ms",
+
+            zh: "zh-CN",
+
+            en: "en"
+
+        };
+
+
+        /* =========================================================
+           CHANGE LANGUAGE
+        ========================================================= */
+
+        function changeLanguage(language) {
+
+            /*
+                Set HTML Language
+            */
+
+            document.documentElement.lang =
+                htmlLanguages[language];
+
+
+            /*
+                Back Button
+            */
+
+            backText.textContent =
+                backTranslations[language];
+
+
+            /*
+                Change All Text
+            */
+
+            document
+                .querySelectorAll(
+                    "[data-ms][data-zh][data-en]"
+                )
+                .forEach((element) => {
+
+                    element.textContent =
+                        element.dataset[language];
+
+                });
+
+
+            /*
+                Keep Select Correct
+            */
+
+            languageSelect.value =
+                language;
+
+        }
+
+
+        /* =========================================================
+           LANGUAGE SELECT
+        ========================================================= */
+
+        languageSelect.addEventListener(
+            "change",
+            function () {
+
+                changeLanguage(this.value);
+
+            }
+        );
+
+
+        /* =========================================================
+           DEFAULT LANGUAGE
+           BAHASA MELAYU
+        ========================================================= */
+
+        changeLanguage("ms");
+
+    </script>
+
+</body>
+
+</html>
